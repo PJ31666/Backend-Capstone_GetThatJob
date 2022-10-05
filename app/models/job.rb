@@ -1,4 +1,7 @@
 class Job < ApplicationRecord
+  # ASOCIACIONES
   belongs_to :user
-  belongs_to :categories
+
+  has_many :applications, dependent: :destroy
+  has_many :category, dependent: :destroy
 end
