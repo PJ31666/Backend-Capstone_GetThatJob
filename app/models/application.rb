@@ -7,5 +7,7 @@ class Application < ApplicationRecord
   # VALIDACIONES
   validates :new_cv, :professional_experience, :professional_interesed, presence: true
   validates :professional_interesed, length: { in: 50..1000 }
-  validates_attachment :cv_file, size: { less_than: 5.5.megabytes }
+  validates :new_cv, size: { less_than: 5.5.megabytes }
+
+  enum status: [:waiting, :progress, :finished, :declined]
 end

@@ -17,13 +17,14 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }
   validates :name, :job_title, format: { with: /[a-zA-Z]/ }
   validates :phone, numericality: true
-  validates :birth_date,
+  validates :birthdate,
             comparison: { less_than: Time.zone.today, message: "can't be in the future" }
-  validates :birth_date,
+  validates :birthdate,
             comparison: { greater_than: 120.years.ago, message: "can't be more than 120 years ago" }
   # validates :professional_exp, length: { in: 300..2000 }
   # validates :about_company, length: { in: 100..2000 }
-  validate :linkedin_url
+  validate :linked_url
+  enum roles: [:professional, :recruiter]
 
   private
 
