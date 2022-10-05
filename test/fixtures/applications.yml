@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  professional_experience: MyText
+  professional_interesed: MyText
+  user: one
+  job: one
+
+two:
+  professional_experience: MyText
+  professional_interesed: MyText
+  user: two
+  job: two
