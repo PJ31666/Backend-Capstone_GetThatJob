@@ -11,19 +11,19 @@ class User < ApplicationRecord
   has_many :jobs, dependent: :destroy
 
   # VALIDACIONES
-  validates :email, :password, :company_name, presence: true
-  validates :company_name, length: { in: 6..30 }, uniqueness: true
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})\z/ }
-  validates :password, length: { minimum: 6 }
-  validates :name, :job_title, format: { with: /[a-zA-Z]/ }
-  validates :phone, numericality: true
-  validates :birthdate,
-            comparison: { less_than: Time.zone.today, message: "can't be in the future" }
-  validates :birthdate,
-            comparison: { greater_than: 120.years.ago, message: "can't be more than 120 years ago" }
-  # validates :professional_exp, length: { in: 300..2000 }
-  # validates :about_company, length: { in: 100..2000 }
-  validate :linked_url
+  # validates :email, :password, :company_name, presence: true
+  # validates :company_name, length: { in: 6..30 }, uniqueness: true
+  # validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})\z/ }
+  # validates :password, length: { minimum: 6 }
+  # validates :name, :job_title, format: { with: /[a-zA-Z]/ }
+  # validates :phone, numericality: true
+  # validates :birthdate,
+  #           comparison: { less_than: Time.zone.today, message: "can't be in the future" }
+  # validates :birthdate,
+  #           comparison: { greater_than: 120.years.ago, message: "can't be more than 120 years ago" }
+  # # validates :professional_exp, length: { in: 300..2000 }
+  # # validates :about_company, length: { in: 100..2000 }
+  # validate :linked_url
   enum roles: [:professional, :recruiter]
 
   private
