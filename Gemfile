@@ -10,6 +10,7 @@ gem "rails", "~> 7.0.4"
 gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
+gem "image_processing", ">= 1.2"
 gem "public_suffix"
 gem "puma", "~> 5.0"
 
