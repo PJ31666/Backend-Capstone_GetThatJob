@@ -13,3 +13,6 @@ User.create(email: "test@mail.com", password: "123456", )
 User.create(email: "hello@mail.com", password: "123456", )
 puts "Finished seeding Users"
 puts "------------------------------------"
+
+puts "Start seeding Categories"
+Category.create(category:"abc")

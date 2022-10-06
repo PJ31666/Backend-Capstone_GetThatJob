@@ -72,7 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_230056) do
   create_table "jobs", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "job_title"
-    t.bigint "categories_id", null: false
+    t.bigint "category_id", null: false
     t.text "optional_requirements"
     t.text "mandatory_requirements"
     t.text "about_job"
@@ -82,7 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_230056) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "types", default: 0
-    t.index ["categories_id"], name: "index_jobs_on_categories_id"
+    t.index ["category_id"], name: "index_jobs_on_category_id"
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
@@ -115,6 +115,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_230056) do
   add_foreign_key "applications", "users"
   add_foreign_key "followings", "jobs"
   add_foreign_key "followings", "users"
-  add_foreign_key "jobs", "categories", column: "categories_id"
+  add_foreign_key "jobs", "categories"
   add_foreign_key "jobs", "users"
 end
