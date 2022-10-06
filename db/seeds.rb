@@ -14,5 +14,9 @@ User.create(email: "hello@mail.com", password: "123456", )
 puts "Finished seeding Users"
 puts "------------------------------------"
 
+puts "------------------------------------"
 puts "Start seeding Categories"
+Category.destroy_all
 Category.create(category:"abc")
+puts "Finished seeding categories"
+puts "------------------------------------"

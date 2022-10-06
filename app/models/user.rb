@@ -23,20 +23,30 @@ class User < ApplicationRecord
             comparison: { greater_than: 120.years.ago, message: "can't be more than 120 years ago" }
   validates :professional_experience, length: { in: 300..2000 }, allow_blank: true
   validates :about_company, length: { in: 100..2000 }, allow_blank: true
-  validate :linked_url
-  enum roles: [:professional, :recruiter]
+  validate :validate_file
+  # validate :validate_url
+  # validate link.valid_url?
+  # validate valid_url?(link)
+  enum roles: { professional: 0, recruiter: 1 }
+
+  # user[:linked_url] = link
 
   private
 
-  def valid_url?(url)
-    uri = URI.parse(url)
-    uri.is_a?(URI::HTTP) && !uri.host.nil?
-  rescue URI::InvalidURIError
-    false
-  end
+  # def valid_url?(url)
+  #   PublicSuffix.valid?("#{url}")
+  # end
+
+  # def validate_url
+  #   errors[:linked_url] << "Should be a valid link" if linked_url.valid_url?
+  # end
 
   def valid_cvfile_size
-    errors[:cv_fie] << "should be 5MB Max." if cv_file.size > 5.5.megabytes
+    errors[:cv_file] << "should be 5MB Max." if cv_file.size > 5.5.megabytes
+  end
+
+  def validate_file
+    return valid_cvfile_size if cv_file.nil?
   end
 
   # , format: { with: PASSWORD_FORMAT }
@@ -47,5 +57,4 @@ class User < ApplicationRecord
   #   (?=.*[a-z])        # Must contain a lower case character
   #   (?=.*[A-Z])        # Must contain an upper case character
   #   (?=.*[[:^alnum:]]) # Must contain a symbol
-  # /x
 end
