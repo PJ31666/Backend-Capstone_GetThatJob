@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
-  # before_action :authorize
+  before_action :authorize, only: %i[show update destroy index]
 
   def current_user
     @current_user ||= authenticate_token

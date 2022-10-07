@@ -35,9 +35,7 @@ class JobsController < ApplicationController
 
   # DELETE /jobs/1
   def destroy
-    # @job = Job.find(params[:id])
-    # @job.destroy
-    @job = Job.find_by(job_id: params[:id])
+    @job = Job.find(params[:id])
     @job.destroy
   end
 

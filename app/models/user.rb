@@ -32,11 +32,11 @@ class User < ApplicationRecord
 
   # user[:linked_url] = link
 
-  private
-
   def invalidate_token
     update(token: nil)
   end
+
+  private
 
   def valid_cvfile_size
     errors[:cv_file] << "should be 5MB Max." if cv_file.size > 5.5.megabytes

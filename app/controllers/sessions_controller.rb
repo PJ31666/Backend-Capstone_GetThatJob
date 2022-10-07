@@ -11,8 +11,8 @@ class SessionsController < ApplicationController
     end
   end
 
+  # DELETE /logout
   def destroy
     current_user.invalidate_token
-    head :ok
   end
 end

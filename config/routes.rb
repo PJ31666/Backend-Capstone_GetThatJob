@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  resources :users do
-    resources :applications
-  end
+  resources :users
+  resources :applications
   resources :jobs
   resources :categories
   resources :followings
@@ -10,5 +9,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   # SESSIONS
   post "/login" => "sessions#create"
-  get "/logout" => "sessions#destroy"
+  delete "/logout" => "sessions#destroy"
 end
