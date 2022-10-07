@@ -206,7 +206,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  bcrypt (~> 3.1.7)
+  bcrypt (~> 3.1.12)
   bootsnap
   debug
   image_processing (>= 1.2)

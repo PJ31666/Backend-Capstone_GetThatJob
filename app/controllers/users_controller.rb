@@ -16,7 +16,12 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
+    # render json: @user.email, status: :created, location: @user if @user.save
 
+    # p "*****************************"
+    p params
+    # p @user.errors.full_messages
+    # p "*****************************"
     if @user.save
       render json: @user, status: :created, location: @user
     else
@@ -47,9 +52,6 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:email, :password_digest, :token, :role, :phone, :name,
-                                 :birthdate, :job_title, :professional_experience, :education,
-                                 :application_count, :linked_url, :company_name, :company_url,
-                                 :about_company, :jobs_count)
+    params.permit(:email, :password)
   end
 end

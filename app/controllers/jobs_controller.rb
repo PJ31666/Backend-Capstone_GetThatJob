@@ -35,7 +35,9 @@ class JobsController < ApplicationController
 
   # DELETE /jobs/1
   def destroy
-    @job = Job.find(params[:job_id])
+    # @job = Job.find(params[:id])
+    # @job.destroy
+    @job = Job.find_by(job_id: params[:id])
     @job.destroy
   end
 
@@ -43,7 +45,7 @@ class JobsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_job
-    @job = Job.find(params[:id])
+    @job = Job.find(params[:job_id])
   end
 
   # Only allow a list of trusted parameters through.
