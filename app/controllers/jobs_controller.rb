@@ -3,15 +3,12 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
-    params
     @jobs = Job.all
-
     render json: @jobs
   end
 
   # GET /jobs/1
   def show
-    params
     render json: @job
   end
 
@@ -37,7 +34,6 @@ class JobsController < ApplicationController
 
   # DELETE /jobs/1
   def destroy
-    @job = Job.find(params[:id])
     @job.destroy
   end
 

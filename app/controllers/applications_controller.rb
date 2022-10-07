@@ -1,6 +1,6 @@
 class ApplicationsController < ApplicationController
   # el metodo set_user se utiliza solo para las acciones dentro de los corchetes
-  before_action :set_user, only: %i[create update destroy]
+  before_action :set_application, only: %i[destroy]
 
   # GET /application
   def index
@@ -17,7 +17,6 @@ class ApplicationsController < ApplicationController
   # POST /application
   def create
     @application = Application.new(application_params)
-    @application.user_id = @user.id
 
     if @application.save
       render json: @application, status: :created, location: @application
@@ -37,7 +36,6 @@ class ApplicationsController < ApplicationController
 
   # DELETE /application/1
   def destroy
-    p params
     @application.destroy
   end
 
@@ -45,8 +43,8 @@ class ApplicationsController < ApplicationController
 
   # http://localhost:3000/users/1/applications
   # Use callbacks to share common setup or constraints between actions.
-  def set_user
-    @user = User.find(params[:user_id])
+  def set_application
+    @application = Application.find(params[:id])
   end
 
   def application_params

@@ -1,4 +1,6 @@
 class FollowingsController < ApplicationController
+  before_action :set_following, only: %i[show update destroy]
+
   def index
     @followings = Following.all
     render json: @followings
