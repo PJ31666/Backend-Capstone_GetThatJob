@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authorize, only: :create
   before_action :set_user, only: %i[show update destroy]
+  # before_action :method
 
   # GET /users
   def index
@@ -16,13 +17,9 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    # validar por front
     @user = User.new(user_params)
-    # render json: @user.email, status: :created, location: @user if @user.save
 
-    # p "*****************************"
-    p params
-    # p @user.errors.full_messages
-    # p "*****************************"
     if @user.save
       render json: @user, status: :created, location: @user
     else
@@ -53,6 +50,6 @@ class UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.permit(:email, :password, :roles, :company_name)
+    params.permit(:email, :password, :roles)
   end
 end

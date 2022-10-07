@@ -11,7 +11,8 @@ class User < ApplicationRecord
   has_many :jobs, dependent: :destroy
 
   # VALIDACIONES
-  validates :email, :company_name, :password_digest, :roles, presence: true
+  validates :email, :password_digest, :roles, presence: true
+  # validates :company_name, presence: true, if: :is_recruiter?
   validates :company_name, length: { in: 6..30 }, uniqueness: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})\z/ }
   validates :password_digest, length: { minimum: 6 }
@@ -43,6 +44,10 @@ class User < ApplicationRecord
   end
 
   def validate_file
-    return valid_cvfile_size if cv_file.nil?
+    return valid_cvfile_size if cv_file.nil
   end
+
+  # def is_recruiter?
+  #   User.roles == "recruiter"
+  # end
 end
