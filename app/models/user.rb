@@ -14,18 +14,18 @@ class User < ApplicationRecord
   # validates :company_name, presence: true if :recruiter?
   enum roles: { professional: 0, recruiter: 1 }
   # validates :company_name, length: { in: 6..30 }, uniqueness: true
-  # validates :email, :password_digest, :roles, presence: true
-  # validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})\z/ }
-  # validates :password_digest, length: { minimum: 6 }
-  # validates :name, :job_title, format: { with: /[a-zA-Z]/ }, allow_blank: true
-  # validates :phone, numericality: true, allow_blank: true
-  # validates :birthdate,
-  #           comparison: { less_than: Time.zone.today, message: "can't be in the future" }, allow_blank: true
-  # validates :birthdate,
-  #           comparison: { greater_than: 120.years.ago, message: "can't be more than 120 years ago" }, allow_blank: true
-  # validates :professional_experience, length: { in: 300..2000 }, allow_blank: true
-  # validates :about_company, length: { in: 100..2000 }, allow_blank: true
-  # validate :validate_file
+  validates :email, :password_digest, :roles, presence: true
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})\z/ }
+  validates :password_digest, length: { minimum: 6 }
+  validates :name, :job_title, format: { with: /[a-zA-Z]/ }, allow_blank: true
+  validates :phone, numericality: true, allow_blank: true
+  validates :birthdate,
+            comparison: { less_than: Time.zone.today, message: "can't be in the future" }, allow_blank: true
+  validates :birthdate,
+            comparison: { greater_than: 120.years.ago, message: "can't be more than 120 years ago" }, allow_blank: true
+  validates :professional_experience, length: { in: 300..2000 }, allow_blank: true
+  validates :about_company, length: { in: 100..2000 }, allow_blank: true
+  validate :validate_file
 
   def invalidate_token
     update(token: nil)

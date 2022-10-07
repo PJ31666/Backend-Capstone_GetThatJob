@@ -5,9 +5,9 @@ class Application < ApplicationRecord
   has_one_attached :new_cv
 
   # VALIDACIONES
-  # validates :professional_experience, :professional_interesed, presence: true
-  # validates :professional_interesed, length: { in: 50..1000 }
-  # validate :validate_file
+  validates :new_cv, :professional_experience, :professional_interesed, presence: true
+  validates :professional_interesed, length: { in: 50..1000 }
+  validate :validate_file
 
   enum status: { waiting: 0, progress: 1, finished: 2, declined: 3 }
 
