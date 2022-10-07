@@ -50,7 +50,7 @@ class ApplicationsController < ApplicationController
   end
 
   def application_params
-    params.require(:application).permit(:professional_experience, :professional_interesed, :new_cv,
-                                        :job_id)
+    params.permit(:professional_experience, :professional_interesed, :new_cv,
+                  :job_id, :user_id)
   end
 end

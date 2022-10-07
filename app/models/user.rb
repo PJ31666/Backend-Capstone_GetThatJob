@@ -10,10 +10,11 @@ class User < ApplicationRecord
   has_many :followings, dependent: :destroy
   has_many :jobs, dependent: :destroy
 
-  # VALIDACIONES
-  validates :email, :password_digest, :roles, presence: true
-  # validates :company_name, presence: true, if: :is_recruiter?
+  # # VALIDACIONES
+  validates :company_name, presence: true if :recruiter?
+  enum roles: { professional: 0, recruiter: 1 }
   validates :company_name, length: { in: 6..30 }, uniqueness: true
+  validates :email, :password_digest, :roles, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})\z/ }
   validates :password_digest, length: { minimum: 6 }
   validates :name, :job_title, format: { with: /[a-zA-Z]/ }, allow_blank: true
@@ -25,13 +26,6 @@ class User < ApplicationRecord
   validates :professional_experience, length: { in: 300..2000 }, allow_blank: true
   validates :about_company, length: { in: 100..2000 }, allow_blank: true
   validate :validate_file
-
-  # validate :validate_url
-  # validate link.valid_url?
-  # validate valid_url?(link)
-  enum roles: { professional: 0, recruiter: 1 }
-
-  # user[:linked_url] = link
 
   def invalidate_token
     update(token: nil)
@@ -46,8 +40,4 @@ class User < ApplicationRecord
   def validate_file
     return valid_cvfile_size if cv_file.nil
   end
-
-  # def is_recruiter?
-  #   User.roles == "recruiter"
-  # end
 end

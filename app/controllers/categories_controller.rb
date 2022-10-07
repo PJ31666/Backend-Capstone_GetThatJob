@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :set_category
+
   # GET / categories
   def index
     @categories = Category.all
@@ -32,6 +34,10 @@ class CategoriesController < ApplicationController
   end
 
   private
+
+  def set_job
+    @category = Category.find(params[:id])
+  end
 
   def category_params
     params.require(:category)
