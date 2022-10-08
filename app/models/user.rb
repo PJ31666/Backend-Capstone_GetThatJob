@@ -11,9 +11,7 @@ class User < ApplicationRecord
   has_many :jobs, dependent: :destroy
 
   # # VALIDACIONES
-  # validates :company_name, presence: true if :recruiter?
   enum roles: { professional: 0, recruiter: 1 }
-  # validates :company_name, length: { in: 6..30 }, uniqueness: true
   validates :email, :password_digest, :roles, presence: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+.)+[a-z]{2,})\z/ }
   validates :password_digest, length: { minimum: 6 }
